@@ -1,0 +1,5266 @@
+
+setScreen("start screen");
+
+ 
+
+playSound("Zaza-Be-Together-(1)-(mp3cut.net)-(1).mp3", false);
+
+onEvent("startbutton", "click", function( ) {
+
+  setScreen("optionscreen");
+
+ 
+
+stopSound("Zaza-Be-Together-(1)-(mp3cut.net)-(1).mp3");
+
+playSound("sound://category_background/repitition.mp3", false);});
+
+ 
+
+var player = 1;
+
+var p1 = 0;
+
+var p2 = 0;
+
+var s1 = 0;
+
+var s2 = 0;
+
+var s3 = 0;
+
+var s4 = 0;
+
+var s5 = 0;
+
+var s6 = 0;
+
+var s7 = 0;
+
+var s8 = 0;
+
+var s9 = 0;
+
+onEvent("resetbutton", "click", function() {
+
+  resetboard();
+
+  stopSound("sound://category_music/clear_evidence_loop1.mp3");
+
+  playSound("sound://category_music/clear_evidence_loop1.mp3", false);
+
+ 
+
+});
+
+ 
+
+ 
+
+onEvent("restartbutton", "click", function() {
+
+  setScreen("gamescreen");
+
+});
+
+ 
+
+ 
+
+//functions
+
+function proceed(h) {
+
+  XandO(h);
+
+  checkforwin();
+
+  changeplayer();
+
+}
+
+function checkforwin() {
+
+  check(s1, s2, s3);
+
+  check(s4, s5, s6);
+
+  check(s7, s8, s9);
+
+  check(s1, s4, s7);
+
+  check(s2, s5, s8);
+
+  check(s3, s6, s9);
+
+  check(s1, s5, s9);
+
+  check(s3, s5, s7);
+
+}
+
+function check(x, y, z) {
+
+  if ((x+y)+z == 3) {
+
+    hideElement("player2backround");
+
+    showElement("label4");
+
+    setText("winlabel", "Player 1 Won!!");
+
+    setScreen("win screen");
+
+    playSound("sound://category_music/game_over_2.mp3", false);
+
+   
+
+    p1++;
+
+    resetboard();
+
+  } else if (((x+y)+z==60)) {
+
+    setText("winlabel", "Player 2 Won!!");
+
+    setScreen("win screen");
+
+    playSound("sound://category_music/game_over_2.mp3", false);
+
+   
+
+    p2++;
+
+    resetboard();
+
+  } else {
+
+    nextturn();
+
+  }
+
+}
+
+function nextturn() {
+
+  if (player == 1) {
+
+    hideElement("label4");
+
+    showElement("player2backround");
+
+    setText("Playerturnlabel", "Player 2's turn");
+
+  } else {
+
+    hideElement("player2backround");
+
+    showElement("label4");
+
+    setText("Playerturnlabel", "Player 1's turn");
+
+  }
+
+}
+
+function resetboard() {
+
+  s1 = 0;
+
+  s2 = 0;
+
+  s3 = 0;
+
+  s4 = 0;
+
+  s5 = 0;
+
+  s6 = 0;
+
+  s7 = 0;
+
+  s8 = 0;
+
+  s9 = 0;
+
+  changeplayer();
+
+  changeplayer();
+
+  hideElement("1");
+
+  hideElement("2");
+
+  hideElement("3");
+
+  hideElement("4");
+
+  hideElement("5");
+
+  hideElement("6");
+
+  hideElement("7");
+
+  hideElement("8");
+
+  hideElement("9");
+
+  hideElement("10");
+
+  hideElement("20");
+
+  hideElement("30");
+
+  hideElement("40");
+
+  hideElement("50");
+
+  hideElement("60");
+
+  hideElement("70");
+
+  hideElement("80");
+
+  hideElement("90");
+
+  setText("Playerturnlabel", "Player " + player + "'s turn");
+
+  setText("player1label", "Player 1: " + p1);
+
+  setText("player2label", "Player 2: " + p2);
+
+  hideElement("player2backround");
+
+  showElement("label4");
+
+}
+
+function changeplayer() {
+
+  if (player == 1) {
+
+    player = 2;
+
+  }
+
+  else {
+
+    player = 1;
+
+  }
+
+}
+
+function XandO(g) {
+
+  if (player == 1) {
+
+    showElement(g);
+
+  } else {
+
+    showElement(g + "0");
+
+  }
+
+}
+
+//functions end
+
+ 
+
+ 
+
+onEvent("friendbutton", "click", function( ) {
+
+  setScreen("gamescreen");
+
+stopSound("sound://category_background/repitition.mp3");
+
+playSound("sound://category_background/fantasy.mp3", false);
+
+       
+
+ 
+
+onEvent("topleft", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s1 = 1;
+
+    proceed(1);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s1 = 20;
+
+    proceed(1);
+
+  }
+
+});
+
+onEvent("topmiddle", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s2 = 1;
+
+    proceed(2);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s2 = 20;
+
+    proceed(2);
+
+  }
+
+});
+
+onEvent("topright", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s3 = 1;
+
+    proceed(3);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s3 = 20;
+
+    proceed(3);
+
+  }
+
+});
+
+onEvent("middleleft", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s4 = 1;
+
+    proceed(4);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s4 = 20;
+
+    proceed(4);
+
+  }
+
+});
+
+onEvent("middlemiddle", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s5 = 1;
+
+    proceed(5);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s5 = 20;
+
+    proceed(5);
+
+  }
+
+});
+
+onEvent("middleright", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s6 = 1;
+
+    proceed(6);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s6 = 20;
+
+    proceed(6);
+
+  }
+
+});
+
+onEvent("bottomleft", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s7 = 1;
+
+    proceed(7);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s7 = 20;
+
+    proceed(7);
+
+  }
+
+});
+
+onEvent("bottommiddle", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+    s8 = 1;
+
+    proceed(8);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s8 = 20;
+
+    proceed(8);
+
+  }
+
+});
+
+onEvent("bottomright", "click", function() {
+
+  if (player == 1 ) {
+
+    playSound("sound://category_app/app_button_1.mp3", false);
+
+   
+
+    s9 = 1;
+
+    proceed(9);
+
+  } else {
+
+    playSound("sound://category_app/app_button_4.mp3", false);
+
+    s9 = 20;
+
+    proceed(9);
+
+  }
+
+});
+
+});
+
+ 
+
+onEvent("Robot", "click", function( ) {
+
+playSound("sound://default.mp3", false);
+
+   
+
+setScreen("gamescreen");
+
+stopSound("sound://category_background/repitition.mp3");
+
+ 
+
+ 
+
+ 
+
+ 
+
+//coding part #2
+
+ 
+
+onEvent("topmiddle", "click", function( ) {
+
+ 
+
+ 
+
+playSound("sound://category_music/puzzle_game_achievement_musical_mysterious_02.mp3", false);
+
+  playSound("sound://category_music/clear_evidence_loop1.mp3", false);
+
+ 
+
+ 
+
+s2=1;
+
+proceed(2);
+
+s5=20;
+
+proceed(5);
+
+//1---3 comment
+
+onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+s1=1;
+
+proceed(1);
+
+s3=20;
+
+proceed(3);
+
+ 
+
+  onEvent("middleleft", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s7=20;
+
+proceed(7);
+
+  });
+
+  onEvent("middleright", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s7=20;
+
+proceed(7);
+
+  });
+
+onEvent("bottomleft", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s4=20;
+
+proceed(4);
+
+   
+
+    onEvent("middleright", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s8=20;
+
+    proceed(8);
+
+    onEvent("bottomright", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    resetboard();
+
+    setScreen("drawscreen");
+
+    onEvent("drawbackbutton", "click", function( ) {
+
+    setScreen("gamescreen");
+
+   
+
+    });});
+
+    onEvent("bottommiddle", "click", function( ) {
+
+      playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+   onEvent("middleright", "click", function( ) {
+
+      playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+  //matchdraw
+
+    }); });
+
+    onEvent("bottomright", "click", function( ) {
+
+      playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s8=20;
+
+    proceed(8);
+
+onEvent("middleright", "click", function( ) {
+
+      playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+  //draw
+
+    });
+
+      
+
+      
+
+    });
+
+ 
+
+       
+
+    });
+
+onEvent("bottommiddle", "click", function( ) {
+
+      playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+    });
+
+onEvent("bottomright", "click", function( ) {
+
+          playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+        });
+
+               
+
+    
+
+  });
+
+   
+
+  
+
+});
+
+//3---1comment
+
+onEvent("topright", "click", function( ) {
+
+ 
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s1=20;
+
+proceed(1);
+
+onEvent("middeleft", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+  });
+
+onEvent("middleright", "click", function( ) {
+
+      playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+    });
+
+    onEvent("bottomleft", "click", function( ) {
+
+          playSound("sound://category_app/app_button_1.mp3",false);
+
+    s7=1;
+
+    proceed(7);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+        });
+
+onEvent("bottommiddle", "click", function( ) {
+
+    playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s9=20;
+
+    proceed(9);         
+
+            });
+
+     onEvent("bottomright", "click", function( ) {
+
+        playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+onEvent("middleleft", "click", function( ) {
+
+        playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+onEvent("bottommiddle", "click", function( ) {
+
+        playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+    //draw
+
+ 
+
+      });      });
+
+onEvent("bottomleft", "click", function( ) {
+
+              playSound("sound://category_app/app_button_1.mp3",false);
+
+    s7=1;
+
+    proceed(7);
+
+   
+
+    s4=20;
+
+    proceed(4);
+
+            });
+
+onEvent("bottommiddle", "click", function( ) {
+
+                     playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s4=20;
+
+    proceed(4);   
+
+                       });
+
+                                             
+
+       
+
+     });
+
+      
+
+                        
+
+});
+
+ 
+
+//4---1commenyt
+
+onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s1=20;
+
+ 
+
+ 
+
+proceed(1);
+
+onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+});
+
+onEvent("middleright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+});
+
+  onEvent("bottomleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s7=1;
+
+    proceed(7);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+});
+
+  onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+});
+
+onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+    onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+ 
+
+      onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    
+
+});
+
+    });
+
+ 
+
+  onEvent("middleright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+});
+
+  onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+});
+
+});
+
+ 
+
+});
+
+ 
+
+//6--3comment
+
+onEvent("middleright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s3=20;
+
+proceed(3);
+
+onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+});
+
+  onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+});onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+});onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s7=20;
+
+    proceed(7);
+
+});onEvent("bottomleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s7=1;
+
+    proceed(7);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s4=20;
+
+    proceed(4);
+
+onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+});});
+
+  onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+   
+
+    s1=20;
+
+    proceed(1);
+
+});onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s1=20;
+
+    proceed(1);
+
+});
+
+});
+
+ 
+
+});
+
+ 
+
+//7--4comment
+
+onEvent("bottomleft", "click", function( ) {
+
+   playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s4=20;
+
+proceed(4);
+
+onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+});onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+});onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+});onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+});
+
+onEvent("middleright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+ 
+
+  onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    //draw
+
+});});
+
+onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s1=20;
+
+    proceed(1);
+
+});onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s1=20;
+
+    proceed(1);
+
+});
+
+ 
+
+  
+
+});
+
+});
+
+ 
+
+//8---7comment
+
+onEvent("bottommiddle", "click", function( ) {
+
+   playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s7=20;
+
+proceed(7);
+
+ 
+
+  onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+}); onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+}); onEvent("middleright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+}); onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+}); onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s1=20;
+
+    proceed(1);
+
+ 
+
+   onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+    
+
+    s9=20;
+
+    proceed(9);
+
+}); onEvent("middleright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s6=1;
+
+    proceed(6);
+
+   
+
+    s9=20;
+
+    proceed(9);
+
+}); onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+    //draw
+
+ 
+
+});});
+
+});
+
+});
+
+ 
+
+ 
+
+//9--6commeny
+
+onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s9=1;
+
+    proceed(9);
+
+   
+
+    s6=20;
+
+    proceed(6);
+
+    onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s4=20;
+
+    proceed(4);
+
+});onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s4=20;
+
+    proceed(4);
+
+});onEvent("bottomleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s7=1;
+
+    proceed(7);
+
+   
+
+    s4=20;
+
+    proceed(4);
+
+});onEvent("bottomright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+    
+
+    s4=20;
+
+    proceed(4);
+
+});
+
+onEvent("middleleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s4=1;
+
+    proceed(4);
+
+        s7=20;
+
+    proceed(7);
+
+ 
+
+  onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s1=1;
+
+    proceed(1);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+});onEvent("bottommiddle", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+    s3=20;
+
+    proceed(3);
+
+});onEvent("topright", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s3=1;
+
+    proceed(3);
+
+   
+
+    s1=20;
+
+    proceed(1);
+
+onEvent("topleft", "click", function( ) {
+
+  playSound("sound://category_app/app_button_1.mp3",false);
+
+    s8=1;
+
+    proceed(8);
+
+   
+
+  //draw
+
+});
+
+ 
+
+});
+
+});
+
+});
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+});
+
+ 
+
+ 
+
+//coding part 1
+
+onEvent("topleft", "click", function( ) {
+
+ 
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s1=1;
+
+proceed(1);
+
+s5=20;
+
+proceed(5);
+
+ 
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s3=20;
+
+proceed(3);
+
+ 
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s7=20;
+
+proceed(7);}
+
+});
+
+ 
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s7=20;
+
+proceed(7);
+
+}
+
+ 
+
+});
+
+ 
+
+ 
+
+onEvent("bottomleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s4=20;
+
+proceed(4);
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s8=20;
+
+proceed(8);
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+}
+
+});
+
+}
+
+});
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s6=20;
+
+proceed(6);
+
+ 
+
+}
+
+});
+
+ 
+
+ 
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s6=20;
+
+proceed(6);
+
+}});
+
+ 
+
+ 
+
+}});
+
+ 
+
+ 
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s7=20;
+
+proceed(7);
+
+}});
+
+ 
+
+ 
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s7=20;
+
+proceed(7);
+
+}});
+
+ 
+
+}});
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s2=20;
+
+proceed(2);
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s8=20;
+
+proceed(8);
+
+}});
+
+ 
+
+ 
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s8=20;
+
+proceed(8);
+
+}});
+
+ 
+
+onEvent("bottomleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s8=20;
+
+proceed(8);
+
+}});
+
+ 
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s4=20;
+
+proceed(4);
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s9=20;
+
+proceed(9);
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+}
+
+});
+
+ 
+
+}});
+
+ 
+
+ 
+
+ 
+
+onEvent("bottomleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s6=20;
+
+proceed(6);
+
+}});
+
+ 
+
+ 
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s6=20;
+
+proceed(6);
+
+}});
+
+ 
+
+ 
+
+}});
+
+ 
+
+ 
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s8=20;
+
+proceed(8);
+
+}});
+
+ 
+
+}});
+
+ 
+
+ 
+
+ 
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s7=20;
+
+proceed(7);
+
+ 
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s3=20;
+
+proceed(3);
+
+}});
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s2=20;
+
+proceed(2);
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s8=20;
+
+proceed(8);
+
+}});
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s9=20;
+
+proceed(9);
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+ 
+
+}});
+
+}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s8=20;
+
+proceed(8);
+
+}});
+
+}});
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s3=20;
+
+proceed(3);
+
+}});
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s3=20;
+
+proceed(3);
+
+}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s3=20;
+
+proceed(3);
+
+}});
+
+ 
+
+}});
+
+ 
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s3=20;
+
+proceed(3);
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s7=20;
+
+proceed(7);
+
+}});
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s7=20;
+
+proceed(7);
+
+}});
+
+onEvent("bottomleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s4=20;
+
+proceed(4);
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s8=20;
+
+proceed(8);
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+ 
+
+}});
+
+ 
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s9=20;
+
+proceed(9);
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+ 
+
+}});}});
+
+ 
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s8=20;
+
+proceed(8);
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+ 
+
+}});}});
+
+ 
+
+ 
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s7=20;
+
+proceed(7);
+
+}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s7=20;
+
+proceed(7);
+
+}});
+
+ 
+
+}});
+
+}});
+
+}});
+
+ 
+
+onEvent("bottomleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s4=20;
+
+proceed(4);
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s6=20;
+
+proceed(6);
+
+}});   
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s6=20;
+
+proceed(6);
+
+}});
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s2=20;
+
+proceed(2);
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s9=20;
+
+proceed(9);
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+ 
+
+}});}});
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s9=20;
+
+proceed(9);
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+ 
+
+}});}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s8=20;
+
+proceed(8);
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+ 
+
+}});   
+
+}});
+
+}});
+
+ 
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s6=20;
+
+proceed(6);
+
+}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s6=20;
+
+proceed(6);
+
+}});
+
+ 
+
+}});
+
+ 
+
+ 
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s7=20;
+
+proceed(7);
+
+ 
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s3=20;
+
+proceed(3);
+
+}});   
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s2=20;
+
+proceed(2);
+
+ 
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s6=20;
+
+proceed(6);
+
+if(player==1){
+
+onEvent("bottomright","click",function(){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;        
+
+proceed(9);
+
+ 
+
+});}}
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s9=20;
+
+proceed(9);
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+ 
+
+}});}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s6=20;
+
+proceed(6);
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+ 
+
+}});    }
+
+ 
+
+}); });
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s3=20;
+
+proceed(3);
+
+}});
+
+onEvent("middleright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=1;
+
+proceed(6);
+
+s3=20;
+
+proceed(3);
+
+}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s9=1;
+
+proceed(9);
+
+s3=20;
+
+proceed(3);
+
+}});   
+
+}});
+
+}});
+
+onEvent("bottomright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s6=20;
+
+s9=1;
+
+proceed(9);
+
+proceed(6);
+
+ 
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s4=20;
+
+proceed(4);
+
+}});   
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s4=20;
+
+proceed(4);
+
+}});
+
+onEvent("middleleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s4=1;
+
+proceed(4);
+
+s7=20;
+
+proceed(7);
+
+ 
+
+onEvent("topmiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s2=1;
+
+proceed(2);
+
+s3=20;
+
+proceed(3);
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+ 
+
+}});}});       
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;
+
+proceed(3);
+
+s2=20;
+
+proceed(2);
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+ 
+
+}});}});
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s2=20;
+
+proceed(2);
+
+onEvent("topright","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s3=1;        
+
+proceed(3);
+
+ 
+
+}});   
+
+}});}});
+
+onEvent("bottomleft","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s7=1;
+
+proceed(7);
+
+s4=20;
+
+proceed(4);
+
+}});
+
+onEvent("bottommiddle","click",function(){
+
+if(player==1){
+
+playSound("sound://category_app/app_button_1.mp3",false);
+
+s8=1;
+
+proceed(8);
+
+s4=20;
+
+proceed(4);
+
+}});   
+
+}});
+
+ 
+
+}});
+
+ 
+
+//second part finish here.
+
+//middle part
+
+                                                                                                                                         
+
+onEvent("middlemiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s5 = 1;
+
+proceed(5);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s1 = 20;
+
+proceed(1);
+
+ 
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;
+
+proceed(3);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+ 
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});});});
+
+ 
+
+});
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;
+
+proceed(3);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}       
+
+});
+
+ 
+
+});});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});
+
+});
+
+});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+ 
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+});
+
+        
+
+});});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});
+
+});
+
+});
+
+});
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;
+
+proceed(3);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+ 
+
+});
+
+        
+
+});});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});    
+
+});
+
+ 
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+ 
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});    
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}       
+
+});
+
+});
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+});
+
+});});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s9 = 20;
+
+proceed(9);
+
+});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s9 = 20;
+
+proceed(9);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+});
+
+});});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});    
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});    
+
+});});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});    
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});    
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});
+
+});    
+
+});
+
+ 
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});    
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});    
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+});    
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+});    
+
+});});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+});    
+
+});
+
+});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+ 
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+});
+
+});}); 
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+});    
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+});    
+
+ 
+
+});
+
+});});
+
+ 
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+ 
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+});});
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});
+
+onEvent("bottomleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s7 = 1;
+
+proceed(7);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}       
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s3 = 20;
+
+proceed(3);
+
+});
+
+});
+
+ 
+
+ 
+
+onEvent("bottomright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s9 = 1;
+
+proceed(9);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s7 = 20;
+
+proceed(7);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("middleleft", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s4 = 1;
+
+proceed(4);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s6 = 20;
+
+proceed(6);
+
+ 
+
+onEvent("topmiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s2 = 1;
+
+proceed(2);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s8 = 20;
+
+proceed(8);
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}
+
+});    
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}                
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+});    
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s2 = 20;
+
+proceed(2);
+
+onEvent("topright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s3 = 1;      
+
+proceed(3);
+
+}
+
+});    
+
+});});
+
+onEvent("middleright", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s6 = 1;
+
+proceed(6);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+onEvent("bottommiddle", "click", function() {
+
+if (player == 1 ) {
+
+playSound("sound://category_app/app_button_1.mp3", false);
+
+s8 = 1;
+
+proceed(8);
+
+}
+
+playSound("sound://category_app/app_button_4.mp3", false);
+
+s4 = 20;
+
+proceed(4);
+
+});
+
+});
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+});
+
+ 
+
+});
+
+});
+
+});
+
+ 
+
+});
+
+});
+
+ 
